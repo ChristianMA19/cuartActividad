@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'ui/pages/main_page.dart';
 
 void main() {
+  Get.lazyPut<ConverterController>(() => ConverterController());
   runApp(const MyApp());
+}
+
+class ConverterController extends GetxController {
+  var valor = 0.obs;
+  int get val => valor.value;
+
+  sum() => valor++;
+  decrease() => valor--;
+  resetval() => valor.value = 0;
 }
 
 class MyApp extends StatelessWidget {
@@ -10,7 +21,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         title: 'GetX Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
